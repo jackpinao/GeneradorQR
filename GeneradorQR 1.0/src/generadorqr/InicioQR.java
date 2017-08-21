@@ -37,11 +37,14 @@ public class InicioQR extends javax.swing.JFrame {
             c.setRotate(rot);
             c.setModuleSize(tam);
             
-            String archivo = System.getProperty("user.home")+"/Documents/NetBeansProjects/GeneradorQR/ImagensQR/qrobjeto.gif";
+            String archivo = System.getProperty("user.home")+"/Documents/GitHub/GeneradorQR/GeneradorQR 1.0/ImagensQR/"+dato+".gif";
+                                   
             c.renderBarcode(archivo);
             
+            /*
             Desktop d=Desktop.getDesktop();
             d.open(new File(archivo));
+            */
             
         } catch (Exception e) {
             System.out.println("Error "+e);
