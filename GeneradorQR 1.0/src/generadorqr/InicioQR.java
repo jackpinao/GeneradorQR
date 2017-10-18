@@ -24,7 +24,7 @@ public class InicioQR extends javax.swing.JFrame {
         initComponents();
     }
 
-    public void generarQr(String dato){
+    public void generarQr(String dato, String ruta){
         try {
             
             QRCode c=new QRCode();
@@ -39,14 +39,16 @@ public class InicioQR extends javax.swing.JFrame {
             c.setRotate(rot);
             c.setModuleSize(tam);
             
-            String archivo = System.getProperty("user.home")+"/Documents/GitHub/GeneradorQR/GeneradorQR 1.0/ImagensQR/"+dato+".gif";
+            String archivo = ruta+"/"+dato+".gif";
+            
+            //String archivo = System.getProperty("user.home")+"/Documents/GitHub/GeneradorQR/GeneradorQR 1.0/ImagensQR/"+dato+".gif";
                                    
             c.renderBarcode(archivo);
             
-            /*
+            
             Desktop d=Desktop.getDesktop();
             d.open(new File(archivo));
-            */
+            
             
         } catch (Exception e) {
             System.out.println("Error "+e);
@@ -68,11 +70,16 @@ public class InicioQR extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         txtCampo = new javax.swing.JTextField();
         btnGenerador = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txtRuta = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
+        dlg.setTitle("Seleccionar Carpeta");
+        dlg.setMinimumSize(new java.awt.Dimension(565, 370));
+        dlg.setName(""); // NOI18N
         dlg.setSize(new java.awt.Dimension(600, 300));
 
+        jFileChooser1.setCurrentDirectory(new java.io.File("C:\\Users\\Jack\\Desktop"));
+        jFileChooser1.setMaximumSize(new java.awt.Dimension(500, 326));
         jFileChooser1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFileChooser1ActionPerformed(evt);
@@ -83,19 +90,27 @@ public class InicioQR extends javax.swing.JFrame {
         dlg.getContentPane().setLayout(dlgLayout);
         dlgLayout.setHorizontalGroup(
             dlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dlgLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jFileChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(dlgLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         dlgLayout.setVerticalGroup(
             dlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jFileChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(dlgLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jFileChooser1.getAccessibleContext().setAccessibleName("");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Generador QR");
+        setMaximumSize(new java.awt.Dimension(600, 300));
+        setMinimumSize(new java.awt.Dimension(500, 200));
+        setPreferredSize(new java.awt.Dimension(500, 200));
+
+        jPanel1.setMaximumSize(new java.awt.Dimension(600, 300));
+        jPanel1.setPreferredSize(new java.awt.Dimension(500, 200));
 
         btnGenerador.setText("Generar QR");
         btnGenerador.addActionListener(new java.awt.event.ActionListener() {
@@ -118,26 +133,26 @@ public class InicioQR extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jTextField1)
+                    .addComponent(txtRuta)
                     .addComponent(txtCampo, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnGenerador)
                     .addComponent(jButton1))
-                .addGap(0, 32, Short.MAX_VALUE))
+                .addGap(59, 59, 59))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGenerador))
-                .addContainerGap(34, Short.MAX_VALUE))
+                    .addComponent(btnGenerador)
+                    .addComponent(txtCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -146,14 +161,14 @@ public class InicioQR extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -162,10 +177,37 @@ public class InicioQR extends javax.swing.JFrame {
 
     private void btnGeneradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneradorActionPerformed
         String campo= txtCampo.getText();
-        generarQr(campo);
+        String ruta= txtRuta.getText();
+        generarQr(campo,ruta);
     }//GEN-LAST:event_btnGeneradorActionPerformed
 
     private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
+        
+        /*
+        final JFileChooser fc = new JFileChooser();
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int response = fc.showOpenDialog(this);
+        if (response == JFileChooser.APPROVE_SELECTION) {
+            JOptionPane.showMessageDialog(this, "Ruta:"+
+                    "\n Archivo:"+fc.getName());
+        } else{
+            JOptionPane.showMessageDialog(this, "Seleccione un archivo.");
+        }*/
+        
+        
+        JFileChooser SelectorDirectorio = (JFileChooser) evt.getSource();
+        String command = evt.getActionCommand();
+        if(command.equals(JFileChooser.APPROVE_SELECTION)){
+            File DirectorioSeleccionado = SelectorDirectorio.getCurrentDirectory();
+            
+            txtRuta.setText(DirectorioSeleccionado.getAbsolutePath());
+            
+            //JOptionPane.showMessageDialog(this, "Ruta:"+DirectorioSeleccionado.getAbsolutePath());
+        }else if (command.equals(JFileChooser.CANCEL_SELECTION)) {
+            JOptionPane.showMessageDialog(this, "Seleccione un archivo.");
+        }
+        
+        /*
         JFileChooser selectorArchivo = (JFileChooser) evt.getSource();
         String command = evt.getActionCommand();
         if (command.equals(JFileChooser.APPROVE_SELECTION)){
@@ -176,6 +218,7 @@ public class InicioQR extends javax.swing.JFrame {
         }else if(command.equals(JFileChooser.CANCEL_SELECTION)){
             JOptionPane.showMessageDialog(this, "Seleccione un archivo.");
         }
+        */
     }//GEN-LAST:event_jFileChooser1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -223,7 +266,7 @@ public class InicioQR extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txtCampo;
+    private javax.swing.JTextField txtRuta;
     // End of variables declaration//GEN-END:variables
 }
